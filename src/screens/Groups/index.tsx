@@ -12,7 +12,7 @@ import { Button } from '@components/Button'
 export function Groups() {
   const { navigate } = useNavigation()
 
-  const [groups, setGroups] = useState<Array<string>>(['oi'])
+  const [groups, setGroups] = useState<Array<string>>([])
 
   const handleNewGroup = () => {
     navigate('new')
