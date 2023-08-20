@@ -13,7 +13,7 @@ export const NewGroup = () => {
       <Content>
         <Icon />
         <HighLight title="Nova Turma" subTitle="crie a turma para adicionar" />
-        <Input />
+        <Input placeholder="Nome da Turma" />
         <Button title="Criar" style={{ marginTop: 20 }} />
       </Content>
     </Container>
