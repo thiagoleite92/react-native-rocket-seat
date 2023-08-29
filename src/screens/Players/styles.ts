@@ -21,7 +21,7 @@ export const HeaderList = styled.View`
   align-items: center;
   margin: 32px 0 12px;
 `
-export const PlayersQuantity = styled.Text`
+export const PlayersQuantity = styled.TextInput`
   ${({ theme }) => css`
     font-size: ${theme.FONT_SIZE.SM}px;
     font-family: ${theme.FONT_FAMILY.BOLD};
