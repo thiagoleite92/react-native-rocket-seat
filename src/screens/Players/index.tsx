@@ -16,6 +16,7 @@ import { AppError } from '@utils/AppError'
 import { playerAddByGroup } from '@storage/player/playerAddByGroup'
 import { playerGetByGrounpAndTeam } from '@storage/player/playerGetByGroupAndTeam'
 import { PlayerStorageDto } from '@storage/player/PlayerStorageDto'
+import { playerRemoveByGroup } from '@storage/player/playerRemoveByGroup'
 
 type RouteParams = {
   group: string
@@ -76,6 +77,17 @@ export const Players = () => {
     }
   }
 
+  const handleRemovePlayer = async (playerName: string) => {
+    try {
+      await playerRemoveByGroup(playerName, group)
+
+      await fetchPlayersByTeam()
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Remover Player', 'Não foi possível remover player do grupo')
+    }
+  }
+
   useEffect(() => {
     fetchPlayersByTeam()
   }, [fetchPlayersByTeam, team])
@@ -119,7 +131,10 @@ export const Players = () => {
         data={players}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
-          <PlayerCard name={item.name} onRemove={() => console.log('oi')} />
+          <PlayerCard
+            name={item.name}
+            onRemove={() => handleRemovePlayer(item.name)}
+          />
         )}
         ListEmptyComponent={() => (
           <ListEmpty message="Não há pessoas nesse time" />
@@ -131,7 +146,11 @@ export const Players = () => {
         ]}
       />
 
-      <Button type="SECONDARY" title="Remover Turma" />
+      <Button
+        type="SECONDARY"
+        title="Remover Turma"
+        onPress={() => console.log('oi')}
+      />
     </Container>
   )
 }
